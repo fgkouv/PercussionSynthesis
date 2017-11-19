@@ -1,2 +1,21 @@
 # PercussionSynthesis
-MATLAB scripts from my thesis for the M.Sc. Acoustics &amp; Music Technology
+MATLAB scripts from my thesis for the M.Sc. Acoustics &amp; Music Technology, August 2016
+
+This repo contains code examples from my experiments with physical modelling and non-linear filtering trying to synthesis percussive timbres. The physically informed scripts simulate the vibration of 2D plates and 1D bars by discretising the differential equation that describes it and solving it iteratively given certain initial conditions. The main percussion "setup" is consisted by a number of plates that are connected to several bars through non-linear springs but are also coupled to each other. Also, this repo contains examples of work from my experimentation with modulating allpass and resonant filters trying to create rich, percussive sounds. In 'APF_ICF_modulation.m' we see how a chain of modulated allpass filters can introduce very deep phase distortion and in 'resonant_Filters.m' we play around with resonant filter topologies
+
+
+• For the initial phase of the percussion environment, please run the script physical_Percussion_Environment.m . This script will ask you to specify a number of overall plates and then proceeds to produce a simulation of the system’s vibration. After completing it, a mix of all the plate vibrations is played back followed by a mix of all the bars. For an exemplary result visualisation, the script also plots the magnitude of the frequency content of the setup’s smallest and largest objects. The resulting plate and bar displacement evolutions are inside the out_plt & out_bar matrices. To listen to some of the resulting separate velocity signals you could do: 
+
+>> soundsc(diff(out_plt(2,:)),SR) 
+
+for the velocity of the second plate (out_plt is of size NP x NF, NP is the number of plates, NF is the duration of the simulation) 
+
+ 
+• This initial environment has been extended to incorporate some initial upgrades in the extended_physical_Percussion_Environment.m file. Even if this is built as a function (so that it can include three minor functions and operate as a standalone), it can still be run as a script. Again, it asks the user to specify a number of plates and to suppress possible long prints on the console, it returns a struct containing four velocity matrices (2 channels for plates, 2 channels for bars) and two “equalised” stereo mixes. For a more detailed analysis of the di erences from the previous script please refer to the file’s preamble. 
+   
+• To demonstrate the starting points of this general setup, there is another script that simulates two decoupled objects, a plate and a bar. This will ask the user to select the type of desired excitation, 1 for a raised cosine strike or 2 for a dry audio input. Based on that, it will play back the result of the two simulations and plot the output waveforms. Please keep the dry audio signal singing_anechoic_OpenAirLib.wav in the same directory as the script in order to be able to listen to the potential of our setup as an audio e ects unit. In case you wish to run the script with a input signal of your choice, please change the audioread command (line 47) to include the right audio file.  
+ 
+   
+• The experiments with modulating allpass filters carried out for the second part of the project, have been summarised in the APF_ICF_modulation.m script. This is a straightforward piece of code that implements a chain of time-variant allpass filters and a chain of time-variant allpass fractional delay inverse comb filters. The chain lengths are set to 10 and the modulation rate and depth are initialised at 100Hz and 0.4 respectively, but the user could tweak them to see their e ect. The script employs a sinusoidal input and plays back the output of each chain. Finally, for each chain we produce two FFT amplitude plots: one for the output of the initial stage and another one for the output of the last stage. 
+
+• The last script is called resonant_Filters.m and it implements a Max Mathews- Julius Smith resonant filter as well as two variations of Scott van Duyne’s 1998 patent (an impulsive one and an oscillating one). For the former, the resonant frequency is set at 100Hz and the decay time at 0.2sec. The latter, uses N=5 closed loops and triggers random frequencies inside the range 100-500Hz. The script plays back the produced sounds from each stage and plots their waveforms for a visual effect.
