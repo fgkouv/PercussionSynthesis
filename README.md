@@ -1,5 +1,7 @@
 # PercussionSynthesis
-MATLAB scripts from my thesis for the M.Sc. Acoustics &amp; Music Technology, August 2016
+MATLAB scripts from my thesis for the M.Sc. Acoustics &amp; Music Technology, University of Edinburgh, August 2016
+If interested in reading the whole thesis **'Novel approaches to percussion synthesis: Experiments with physical modelling and non-linear wave-shaping'** please contact me at [gkouvas_foivos@hotmail.com](gkouvas_foivos@hotmail.com)
+
 
 This repo contains code examples from my experiments with physical modelling and non-linear filtering trying to synthesis percussive timbres. The physically informed scripts simulate the vibration of 2D plates and 1D bars by discretising the differential equation that describes it and solving it iteratively given certain initial conditions. The main percussion "setup" is consisted by a number of plates that are connected to several bars through non-linear springs but are also coupled to each other. Also, this repo contains examples of work from my experimentation with modulating allpass and resonant filters trying to create rich, percussive sounds. In 'APF_ICF_modulation.m' we see how a chain of modulated allpass filters can introduce very deep phase distortion and in 'resonant_Filters.m' we play around with resonant filter topologies
 
